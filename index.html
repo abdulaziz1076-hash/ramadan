@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>الوجبات الرمضانية أبوظبي | توصيل الإفطار</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0a3d62">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+    <!-- شريط التحميل -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <div class="loader-icon">
+                <i class="fas fa-moon"></i>
+            </div>
+            <p>جاري التحميل...</p>
+        </div>
+    </div>
+
+    <!-- الهيدر المثبت -->
+    <header class="header sticky-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo" onclick="window.location.reload()" style="cursor: pointer;">
+                    <i class="fas fa-moon"></i>
+                    <div class="logo-text">
+                        <h1>وجبات رمضان</h1>
+                        <p class="logo-subtitle">أبوظبي</p>
+                    </div>
+                </div>
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- شريط الفلتر المثبت -->
+    <section class="filters sticky-filters">
+        <div class="container">
+            <div class="filters-row">
+                <div class="filter-group">
+                    <div class="filter-select-wrapper">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <select id="cityFilter" class="city-select">
+                            <option value="all">جميع المناطق</option>
+                            <option value="أبوظبي">أبوظبي</option>
+                            <option value="المصفح">المصفح</option>
+                            <option value="الشهامة">الشهامة</option>
+                            <option value="بني ياس">بني ياس</option>
+                            <option value="خليفة">خليفة</option>
+                            <option value="المرفأ">المرفأ</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="search-box">
+                    <div class="search-input-wrapper">
+                        <input type="text" id="searchInput" placeholder="ابحث عن وجبة...">
+                        <button id="searchBtn" class="search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- القائمة الرئيسية -->
+    <main class="main-content">
+        <div class="container">
+            <!-- بطاقة ترحيبية -->
+            <div class="welcome-card">
+                <div class="welcome-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <div class="welcome-text">
+                    <h3>مرحباً في رمضان!</h3>
+                    <p>اطلب إفطارك أو سحورك من أفضل المطاعم في أبوظبي</p>
+                </div>
+            </div>
+
+            <!-- قائمة المطاعم -->
+            <div id="restaurantsContainer" class="restaurants-grid">
+                <!-- المطاعم تُعرض هنا -->
+            </div>
+
+            <!-- رسالة عدم وجود نتائج -->
+            <div id="noResults" class="no-results-card" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h3>لا توجد نتائج</h3>
+                <p>جرب البحث بكلمات مختلفة أو اختر منطقة أخرى</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- زر العودة للأعلى -->
+    <button class="scroll-top-btn" id="scrollTopBtn">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- السلة الطافية للهواتف -->
+    <div class="cart-container" id="cartContainer">
+        <!-- السلة المنبثقة من الأسفل -->
+        <div class="cart-bottom-sheet" id="cartBottomSheet">
+            <div class="cart-sheet-header">
+                <div class="cart-header-content">
+                    <h3><i class="fas fa-shopping-cart"></i> سلة الطلبات</h3>
+                    <span class="cart-items-count" id="mobileCartCount">0 عنصر</span>
+                </div>
+                <button class="close-bottom-sheet" id="closeBottomSheet">
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+            
+            <div class="cart-sheet-body" id="cartSheetBody">
+                <!-- محتويات السلة -->
+                <div class="cart-items-container" id="mobileCartItems">
+                    <div class="empty-cart-state">
+                        <i class="fas fa-shopping-basket"></i>
+                        <p>السلة فارغة</p>
+                        <small>أضف بعض الوجبات من المطاعم</small>
+                    </div>
+                </div>
+                
+                <div class="cart-summary">
+                    <div class="cart-total-row">
+                        <span>المجموع:</span>
+                        <span class="total-amount" id="mobileCartTotal">0 درهم</span>
+                    </div>
+                    <div class="cart-delivery-row">
+                        <span>رسوم التوصيل:</span>
+                        <span class="delivery-fee">5 دراهم</span>
+                    </div>
+                    <div class="cart-final-total">
+                        <span>الإجمالي النهائي:</span>
+                        <span class="final-amount" id="mobileFinalTotal">5 دراهم</span>
+                    </div>
+                </div>
+                
+                <div class="cart-actions">
+                    <button class="clear-cart-btn" id="mobileClearCart">
+                        <i class="fas fa-trash"></i> تفريغ السلة
+                    </button>
+                    <button class="checkout-btn" id="mobileCheckout">
+                        <i class="fas fa-check-circle"></i> إتمام الطلب
+                        <span class="checkout-badge" id="checkoutBadge">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- زر السلة العائم -->
+        <button class="cart-fab" id="cartFab">
+            <div class="fab-content">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="fab-badge" id="fabBadge">0</span>
+            </div>
+            <span class="fab-text">السلة</span>
+        </button>
+    </div>
+
+    <!-- مودال إتمام الطلب -->
+    <div class="order-modal" id="orderModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <i class="fas fa-receipt"></i>
+                    <h2>إتمام الطلب</h2>
+                </div>
+                <button class="close-modal-btn" id="closeOrderModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <form id="orderForm" class="order-form">
+                    <!-- خطوات الطلب -->
+                    <div class="form-steps">
+                        <div class="step active" data-step="1">
+                            <div class="step-number">1</div>
+                            <span>بياناتك</span>
+                        </div>
+                        <div class="step" data-step="2">
+                            <div class="step-number">2</div>
+                            <span>الدفع</span>
+                        </div>
+                        <div class="step" data-step="3">
+                            <div class="step-number">3</div>
+                            <span>التأكيد</span>
+                        </div>
+                    </div>
+                    
+                    <!-- الخطوة 1: بيانات العميل -->
+                    <div class="form-step" id="step1">
+                        <h3 class="step-title"><i class="fas fa-user-circle"></i> معلومات التواصل</h3>
+                        
+                        <div class="input-group">
+                            <label for="customerName">الاسم الكامل *</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="customerName" required placeholder="أدخل اسمك الكامل">
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="customerPhone">رقم الهاتف *</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-phone"></i>
+                                <input type="tel" id="customerPhone" required placeholder="0501234567">
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="customerArea">المنطقة *</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <select id="customerArea" required>
+                                    <option value="">اختر منطقتك</option>
+                                    <option value="أبوظبي">أبوظبي</option>
+                                    <option value="المصفح">المصفح</option>
+                                    <option value="الشهامة">الشهامة</option>
+                                    <option value="بني ياس">بني ياس</option>
+                                    <option value="خليفة">خليفة</option>
+                                    <option value="المرفأ">المرفأ</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="customerAddress">العنوان التفصيلي *</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-home"></i>
+                                <textarea id="customerAddress" rows="2" required placeholder="الشارع، رقم المنزل، البرج..."></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="orderNotes">ملاحظات إضافية</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-sticky-note"></i>
+                                <textarea id="orderNotes" rows="2" placeholder="وقت التوصيل المفضل، تعليمات خاصة..."></textarea>
+                            </div>
+                        </div>
+                        
+                        <button type="button" class="next-step-btn" id="nextToStep2">
+                            التالي <i class="fas fa-arrow-left"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- الخطوة 2: طريقة الدفع -->
+                    <div class="form-step" id="step2" style="display: none;">
+                        <h3 class="step-title"><i class="fas fa-credit-card"></i> طريقة الدفع</h3>
+                        
+                        <div class="payment-methods">
+                            <div class="payment-method selected" data-method="bank">
+                                <div class="method-icon">
+                                    <i class="fas fa-university"></i>
+                                </div>
+                                <div class="method-info">
+                                    <h4>تحويل بنكي</h4>
+                                    <p>تحويل مباشر إلى حساب المطعم</p>
+                                </div>
+                                <div class="method-check">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="payment-instructions">
+                                <h4><i class="fas fa-info-circle"></i> تعليمات الدفع</h4>
+                                <ul>
+                                    <li>سيصلك رقم الحساب البنكي على واتساب</li>
+                                    <li>قم بالتحويل بنفس قيمة الفاتورة</li>
+                                    <li>أرسل إيصال التحويل لخدمة العملاء</li>
+                                    <li>سنتواصل معك خلال 15 دقيقة</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="order-summary">
+                                <h4>ملخص الطلب</h4>
+                                <div class="summary-items" id="orderSummary">
+                                    <!-- يتم تعبئته بالجافاسكربت -->
+                                </div>
+                                <div class="summary-total">
+                                    <span>الإجمالي:</span>
+                                    <span id="summaryTotal">0 درهم</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-buttons">
+                            <button type="button" class="prev-step-btn" id="backToStep1">
+                                <i class="fas fa-arrow-right"></i> السابق
+                            </button>
+                            <button type="button" class="next-step-btn" id="nextToStep3">
+                                التالي <i class="fas fa-arrow-left"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- الخطوة 3: التأكيد -->
+                    <div class="form-step" id="step3" style="display: none;">
+                        <div class="confirmation-step">
+                            <div class="confirmation-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <h3>تأكيد الطلب</h3>
+                            <p class="confirmation-text">يرجى التأكد من صحة المعلومات قبل الإرسال</p>
+                            
+                            <div class="confirmation-details">
+                                <div class="detail-item">
+                                    <span><i class="fas fa-user"></i> الاسم:</span>
+                                    <span id="confirmName">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span><i class="fas fa-phone"></i> الهاتف:</span>
+                                    <span id="confirmPhone">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span><i class="fas fa-map-marker-alt"></i> العنوان:</span>
+                                    <span id="confirmAddress">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span><i class="fas fa-money-bill-wave"></i> الإجمالي:</span>
+                                    <span id="confirmTotal">0 درهم</span>
+                                </div>
+                            </div>
+                            
+                            <div class="terms-agreement">
+                                <input type="checkbox" id="agreeTerms" required>
+                                <label for="agreeTerms">أوافق على الشروط والأحكام وسياسة الخصوصية</label>
+                            </div>
+                        </div>
+                        
+                        <div class="step-buttons">
+                            <button type="button" class="prev-step-btn" id="backToStep2">
+                                <i class="fas fa-arrow-right"></i> السابق
+                            </button>
+                            <button type="submit" class="submit-order-btn" id="submitOrderBtn">
+                                <i class="fas fa-paper-plane"></i> إرسال الطلب
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- إشعارات -->
+    <div class="notifications-container" id="notificationsContainer"></div>
+
+    <!-- الفوتر -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4><i class="fas fa-headset"></i> خدمة العملاء</h4>
+                    <a href="https://wa.me/971501234567" class="contact-link">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>واتساب: 050 123 4567</span>
+                    </a>
+                    <a href="tel:+9718001234" class="contact-link">
+                        <i class="fas fa-phone"></i>
+                        <span>هاتف: 800 1234</span>
+                    </a>
+                    <p class="working-hours">
+                        <i class="fas fa-clock"></i>
+                        من 3:00 مساءً حتى 2:00 صباحاً
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4><i class="fas fa-shipping-fast"></i> التوصيل</h4>
+                    <p>نقوم بالتوصيل لجميع مناطق أبوظبي</p>
+                    <p>وقت التوصيل: 25-45 دقيقة</p>
+                    <p>رسوم التوصيل: 5 دراهم</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4><i class="fas fa-share-alt"></i> تابعنا</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link tiktok">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="#" class="social-link snapchat">
+                            <i class="fab fa-snapchat-ghost"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">
+                    <i class="fas fa-copyright"></i> 2024 وجبات رمضان أبوظبي. جميع الحقوق محفوظة.
+                </p>
+                <div class="footer-links">
+                    <a href="#">الشروط والأحكام</a>
+                    <a href="#">سياسة الخصوصية</a>
+                    <a href="#">سياسة الاسترجاع</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- السكربتات -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
