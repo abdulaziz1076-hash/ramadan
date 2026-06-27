@@ -802,111 +802,6 @@
     box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
 }
 
-.promo-banner-mini {
-        position: relative; /* ليتمكن زر الإغلاق من التموضع بالنسبة له */
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        background: linear-gradient(135deg, #1e3c72, #2a5298);
-        color: #fff;
-        padding: 10px 20px;
-        border-radius: 8px;
-        margin: 10px 0;
-        font-family: 'Tahoma', sans-serif;
-        direction: rtl;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        transition: all 0.4s ease;
-        overflow: hidden;
-    }
-
-    /* المحتوى الداخلي */
-    .promo-mini-content {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        flex: 1;
-    }
-    .promo-mini-content i {
-        font-size: 28px;
-        color: #ffd700;
-    }
-    .promo-mini-content strong {
-        font-size: 18px;
-        margin-left: 6px;
-    }
-    .promo-mini-content span {
-        font-size: 14px;
-        opacity: 0.9;
-        background: rgba(255,255,255,0.15);
-        padding: 2px 12px;
-        border-radius: 20px;
-    }
-
-    /* زر الذهاب إلى السوق */
-    .promo-btn-mini {
-        background: #ffd700;
-        color: #1e3c72;
-        padding: 8px 18px;
-        border-radius: 30px;
-        text-decoration: none;
-        font-weight: bold;
-        font-size: 15px;
-        transition: 0.3s;
-        white-space: nowrap;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-    }
-    .promo-btn-mini:hover {
-        background: #ffe44d;
-        transform: scale(1.03);
-        color: #0a1a2e;
-    }
-
-    /* ===== زر الإلغاء (×) ===== */
-    .promo-close-btn {
-        position: absolute;
-        top: 6px;
-        left: 10px;   /* لأن الاتجاه RTL، نضعه على اليسار (أعلى اليمين في الشاشة) */
-        background: rgba(255,255,255,0.2);
-        border: none;
-        color: #fff;
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        font-size: 16px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background 0.3s, transform 0.2s;
-        padding: 0;
-        line-height: 1;
-        backdrop-filter: blur(2px);
-    }
-    .promo-close-btn:hover {
-        background: rgba(255,70,70,0.7);
-        transform: rotate(90deg) scale(1.1);
-    }
-    .promo-close-btn:focus {
-        outline: 2px solid #ffd700;
-    }
-
-    /* ===== تأثير الإلغاء (اختفاء متحرك) ===== */
-    .promo-banner-mini.hidden {
-        opacity: 0;
-        transform: translateY(-20px) scale(0.95);
-        max-height: 0;
-        margin: 0;
-        padding: 0 20px;
-        pointer-events: none;
-        transition: all 0.5s ease;
-        overflow: hidden;
-    }
-
-    /* ===== توافق مع الشاشات الصغيرة ===== */
-   
-
 @media (max-width: 550px) {
     .promo-banner-mini {
         border-radius: 20px;
@@ -928,28 +823,6 @@
         padding: 12px;
     }
 }
-
- @media (max-width: 600px) {
-        .promo-banner-mini {
-            flex-wrap: wrap;
-            padding: 12px 16px;
-            gap: 8px;
-        }
-        .promo-mini-content {
-            flex: 1 1 100%;
-            justify-content: center;
-        }
-        .promo-btn-mini {
-            margin: 0 auto;
-        }
-        .promo-close-btn {
-            top: 4px;
-            left: 6px;
-            width: 24px;
-            height: 24px;
-            font-size: 14px;
-        }
-    }
 
         /* ===== استجابة ===== */
         @media (max-width: 768px) {
@@ -994,25 +867,186 @@
     </div>
 
 <!-- ============================================================ -->
-<!-- الإعلان الترويجي العلوي (قابل للإلغاء) -->
+<!-- الإعلان الترويجي العلوي (قابل للإلغاء)                       -->
 <!-- ============================================================ -->
-<div class="promo-banner-mini" id="promoBanner">
-    <!-- زر الإلغاء (×) -->
-    <button class="promo-close-btn" id="closePromoBtn" aria-label="إغلاق الإعلان">
+<div class="promo-banner-light" id="promoBanner">
+    <button class="promo-close-light" id="promoClose" aria-label="إغلاق">
         <i class="fas fa-times"></i>
     </button>
-
-    <div class="promo-mini-content">
-        <i class="fas fa-store-alt"></i>
+    <div class="promo-content-light">
+        <i class="fas fa-store-alt promo-icon-light"></i>
         <div>
             <strong>سوق المشاريع المنزلية</strong>
             <span>بيع · شراء · عرض مجاني</span>
         </div>
     </div>
-    <a href="https://souqalmasharie.onrender.com" target="_blank" class="promo-btn-mini">
+    <a href="https://souqalmashrie.onrender.com" target="_blank" class="promo-btn-light">
         <i class="fas fa-arrow-left"></i> زور السوق
     </a>
 </div>
+
+<style>
+    /* ===== الإعلان بخلفية فاتحة ===== */
+    .promo-banner-light {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #eef6f2; /* أخضر فاتح جداً وناعم */
+        /* استخدام تدرج فاتح بديل من الهوية */
+        background: linear-gradient(135deg, #eaf3ee, #f5faf7);
+        color: var(--primary-dark);
+        padding: 10px 20px;
+        border-radius: 12px;
+        margin: 12px 0;
+        box-shadow: var(--card-shadow); /* ظل خفيف من الهوية */
+        border: 1px solid rgba(212, 175, 55, 0.25); /* لمسة ذهبية خفيفة */
+        position: relative;
+        transition: all 0.4s ease;
+        overflow: hidden;
+        direction: rtl;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+    .promo-banner-light.hidden {
+        max-height: 0;
+        padding: 0 20px;
+        margin: 0;
+        opacity: 0;
+        transform: translateY(-8px);
+        pointer-events: none;
+        border-width: 0;
+    }
+
+    /* ===== المحتوى الداخلي ===== */
+    .promo-content-light {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex: 1 1 auto;
+    }
+    .promo-icon-light {
+        font-size: 28px;
+        color: var(--secondary); /* ذهبي من الهوية */
+    }
+    .promo-content-light strong {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--primary-dark);
+        font-family: 'El Messiri', serif; /* من الهوية */
+    }
+    .promo-content-light span {
+        font-size: 13px;
+        background: rgba(15, 61, 46, 0.08); /* أخضر شفاف جداً */
+        padding: 2px 14px;
+        border-radius: 30px;
+        font-weight: 600;
+        color: var(--primary-dark);
+        margin-right: 6px;
+    }
+
+    /* ===== زر الذهاب (ذهبي) ===== */
+    .promo-btn-light {
+        background: var(--secondary);
+        color: var(--primary-dark);
+        padding: 8px 20px;
+        border-radius: 40px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 14px;
+        transition: 0.25s;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        white-space: nowrap;
+        border: 1px solid transparent;
+        box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
+    }
+    .promo-btn-light:hover {
+        background: var(--secondary-light);
+        transform: translateY(-2px);
+        box-shadow: var(--hover-shadow);
+    }
+
+    /* ===== زر الإلغاء (×) ===== */
+    .promo-close-light {
+        position: absolute;
+        top: 6px;
+        left: 10px; /* في RTL = أعلى اليمين */
+        background: rgba(0, 0, 0, 0.04);
+        border: none;
+        color: var(--gray);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: 0.25s;
+        font-size: 16px;
+        border: 1px solid rgba(0, 0, 0, 0.04);
+        padding: 0;
+        line-height: 1;
+    }
+    .promo-close-light:hover {
+        background: var(--danger); /* أحمر من الهوية */
+        color: #fff;
+        transform: rotate(90deg) scale(1.1);
+    }
+
+    /* ===== استجابة للشاشات الصغيرة ===== */
+    @media (max-width: 550px) {
+        .promo-banner-light {
+            padding: 14px 16px;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 8px;
+        }
+        .promo-content-light {
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .promo-btn-light {
+            justify-content: center;
+            width: 100%;
+        }
+        .promo-close-light {
+            top: 4px;
+            left: 6px;
+            width: 26px;
+            height: 26px;
+            font-size: 13px;
+        }
+        .promo-content-light span {
+            margin-right: 0;
+        }
+    }
+    @media (max-width: 380px) {
+        .promo-content-light strong { font-size: 15px; }
+        .promo-icon-light { font-size: 22px; }
+    }
+</style>
+
+<script>
+    (function() {
+        const banner = document.getElementById('promoBanner');
+        const closeBtn = document.getElementById('promoClose');
+        const key = 'promoBannerClosed';
+
+        // إخفاء فوري إذا كان مخزناً سابقاً
+        if (localStorage.getItem(key) === 'true') {
+            banner.classList.add('hidden');
+            banner.style.display = 'none';
+        }
+
+        closeBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            banner.classList.add('hidden');
+            setTimeout(() => { banner.style.display = 'none'; }, 450);
+            localStorage.setItem(key, 'true');
+        });
+    })();
+</script>
 
 
     <!-- ============================================================ -->
@@ -1208,54 +1242,6 @@
                 onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(44,62,80,0.3)';">فهمت</button>
     </div>
 </div>
-
-
-<script>
-    (function() {
-        // ===== 1. عناصر DOM =====
-        const banner = document.getElementById('promoBanner');
-        const closeBtn = document.getElementById('closePromoBtn');
-
-        // ===== 2. مفتاح التخزين المحلي =====
-        const STORAGE_KEY = 'promoBannerClosed';
-
-        // ===== 3. التحقق من وجود تفضيل سابق =====
-        // إذا كان المستخدم قد أغلق الإعلان سابقاً في هذه الجلسة (أو حسب المدة التي تريدها)
-        // يمكنك تغيير الشرط حسب رغبتك (مثلاً إضافة انتهاء صلاحية)
-        const isClosed = localStorage.getItem(STORAGE_KEY) === 'true';
-
-        if (isClosed) {
-            // إخفاء الإعلان فوراً دون تأثير (لأنه سبق وأغلق)
-            banner.classList.add('hidden');
-            // نمنع ظهوره نهائياً (لن يرى المستخدم أي وميض)
-            banner.style.display = 'none';
-        }
-
-        // ===== 4. معالجة النقر على زر الإلغاء =====
-        closeBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-
-            // إضافة class "hidden" لتشغيل تأثير الاختفاء
-            banner.classList.add('hidden');
-
-            // بعد انتهاء مدة الانتقال، نخفيه تماماً (اختياري)
-            setTimeout(function() {
-                banner.style.display = 'none';
-            }, 500); // نفس مدة transition
-
-            // حفظ التفضيل في localStorage (لن يظهر مرة أخرى في هذه الجلسة)
-            localStorage.setItem(STORAGE_KEY, 'true');
-
-            // (اختياري) يمكنك إرسال حدث تحليلي هنا إذا أردت تتبع عمليات الإلغاء
-            console.log('تم إلغاء الإعلان الترويجي');
-        });
-
-        // ===== 5. (اختياري) إعادة ظهور الإعلان بعد مدة معينة =====
-        // مثلاً: إذا أردت أن يظهر مرة أخرى بعد 24 ساعة، يمكنك تخزين وقت الإلغاء
-        // والتحقق منه عند التحميل. لكن الأبسط هو إبقاؤه مخفياً طوال الجلسة.
-        // يمكنك أيضاً مسح localStorage يدوياً لتجربة الإعلان مرة أخرى.
-    })();
-</script>
 
 <!-- ============================================================ -->
 <!-- كود JavaScript                                               -->
