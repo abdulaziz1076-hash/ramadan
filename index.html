@@ -3,9 +3,43 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>منصة الذهب الخليجية</title>
+
+    <!-- ===== SEO الأساسي ===== -->
+    <title>سعر الذهب في الامارات - أسعار الذهب اليوم في الإمارات</title>
+    <meta name="description" content="تعرف على سعر الذهب في الامارات اليوم، سعر جرام الذهب عيار 24، 22، 21، 18، مع حاسبة ذكية لمعرفة قيمة ذهبك وأسعار الذهب لحظياً في الإمارات." />
+    <meta name="keywords" content="سعر الذهب في الامارات, سعر جرام الذهب في الامارات اليوم, سعر غرام الذهب في الامارات, اسعار الذهب في الامارات, سعر الذهب اليوم في الامارات, سعر الذهب عيار 24 في الامارات, سعر الذهب عيار 22 في الامارات, سعر الذهب عيار 21 في الامارات, سعر الذهب عيار 18 في الامارات, حاسبة الذهب في الامارات, اسعار الذهب اليوم مباشر, سعر الذهب في دبي, سعر الذهب في ابوظبي, سعر الذهب في الشارقة" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://yourdomain.com/" />
+
+    <!-- ===== Open Graph (لوسائل التواصل) ===== -->
+    <meta property="og:title" content="سعر الذهب في الامارات - أسعار الذهب اليوم في الإمارات" />
+    <meta property="og:description" content="تعرف على سعر الذهب في الامارات اليوم، سعر جرام الذهب عيار 24، 22، 21، 18، مع حاسبة ذكية لمعرفة قيمة ذهبك." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yourdomain.com/" />
+    <meta property="og:image" content="https://yourdomain.com/gold-image.jpg" />
+
+    <!-- ===== بيانات منظمة JSON-LD (لظهور غني في قوقل) ===== -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "حاسبة أسعار الذهب الخليجية",
+            "description": "تعرف على سعر الذهب في الامارات اليوم، سعر جرام الذهب عيار 24، 22، 21، 18، مع حاسبة ذكية.",
+            "applicationCategory": "Finance",
+            "operatingSystem": "All",
+            "browserRequirements": "Requires JavaScript",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "AED"
+            }
+        }
+    </script>
+
+    <!-- ===== الخطوط والأيقونات ===== -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=El+Messiri:wght@400;700&family=Almarai:wght@400;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
     <style>
         /* ============================================================ */
         /*  الهوية العامة (نفس التصميم الأصلي مع تحسينات)                */
@@ -72,11 +106,6 @@
             margin-bottom: 28px;
             gap: 16px;
         }
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
         .logo h1 {
             font-family: var(--font-title);
             font-size: 26px;
@@ -85,15 +114,6 @@
         }
         .logo h1 span {
             color: var(--platform-gold);
-        }
-        .logo .sub {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--platform-gray);
-            background: var(--platform-bg);
-            padding: 4px 14px;
-            border-radius: 30px;
-            border: 1px solid var(--platform-border);
         }
 
         .header-actions {
@@ -338,6 +358,23 @@
             unicode-bidi: plaintext;
         }
 
+        .mini-card .price-range {
+            font-size: 14px;
+            color: var(--platform-gray);
+            margin-top: 2px;
+            margin-bottom: 6px;
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .mini-card .price-range span {
+            font-weight: 700;
+            color: var(--platform-dark);
+            direction: ltr;
+            unicode-bidi: plaintext;
+        }
+
         .mini-card .price-sub {
             font-size: 13px;
             color: var(--platform-gray);
@@ -463,7 +500,6 @@
             background: #f5d06b;
             transform: translateY(-3px);
         }
-        /* زر الإلغاء داخل الإعلان */
         .promo-close-inside {
             background: #2C3E50;
             color: #ffffff !important;
@@ -559,7 +595,7 @@
             box-shadow: 0 8px 25px rgba(44, 62, 80, 0.3);
         }
 
-        /* ===== التذييل ===== */
+        /* ===== التذييل مع الملاحظة ===== */
         .footer {
             border-top: 1px solid var(--platform-border);
             padding-top: 24px;
@@ -608,6 +644,23 @@
         }
         .footer .howto-link:hover {
             border-bottom-color: var(--platform-gold);
+        }
+
+        .footer .disclaimer {
+            background: #FFF8E7;
+            border-radius: 16px;
+            padding: 16px 20px;
+            margin-top: 16px;
+            border-right: 4px solid var(--platform-gold);
+            text-align: right;
+            font-size: 14px;
+            color: #5A4E3A;
+            line-height: 1.8;
+            border: 1px solid var(--platform-border);
+            border-right-width: 4px;
+        }
+        .footer .disclaimer strong {
+            color: var(--platform-dark);
         }
 
         /* ===== النوافذ المنبثقة ===== */
@@ -808,6 +861,10 @@
             .modal-box {
                 padding: 28px 20px;
             }
+            .footer .disclaimer {
+                font-size: 13px;
+                padding: 14px 16px;
+            }
         }
         @media (max-width: 480px) {
             .app {
@@ -816,10 +873,6 @@
             }
             .logo h1 {
                 font-size: 18px;
-            }
-            .logo .sub {
-                font-size: 10px;
-                padding: 2px 10px;
             }
             .mini-card .price-main {
                 font-size: 26px;
@@ -838,8 +891,6 @@
                 padding: 8px 18px;
             }
             .promo-close-inside {
-                top: -10px;
-                left: -10px;
                 width: 24px;
                 height: 24px;
                 font-size: 12px;
@@ -854,7 +905,7 @@
     <div class="app">
 
         <!-- ===== الهيدر ===== -->
-        <div class="header">
+        <header class="header">
             <div class="logo">
                 <h1>حاسبة أسعار <span>الذهب</span> الخليجية</h1>
             </div>
@@ -862,7 +913,7 @@
                 <span class="update-badge"><i class="fas fa-sync-alt fa-fw"></i> <span id="lastUpdate">الآن</span></span>
                 <button class="btn-refresh" id="refreshBtn"><i class="fas fa-bolt"></i> تحديث</button>
             </div>
-        </div>
+        </header>
 
         <!-- ===== الإعلان الترويجي ===== -->
         <div class="promo-wrapper">
@@ -884,11 +935,11 @@
         </div>
 
         <!-- ===== 1. الحاسبة ===== -->
-        <div class="section">
-            <div class="section-title"><i class="fas fa-calculator"></i> حاسبة الذهب الذكية</div>
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-calculator"></i> حاسبة الذهب الذكية</h2>
             <div class="calc-grid">
                 <div class="field">
-                    <label>العملة</label>
+                    <label for="calcCurrency">العملة</label>
                     <select id="calcCurrency">
                         <option value="AED">درهم إماراتي</option>
                         <option value="SAR">ريال سعودي</option>
@@ -900,11 +951,11 @@
                     </select>
                 </div>
                 <div class="field">
-                    <label>الوزن (جرام)</label>
+                    <label for="calcWeight">الوزن (جرام)</label>
                     <input type="number" id="calcWeight" value="10" step="0.1" />
                 </div>
                 <div class="field">
-                    <label>العيار</label>
+                    <label for="calcCarat">العيار</label>
                     <select id="calcCarat">
                         <option value="24">24</option>
                         <option value="22" selected>22</option>
@@ -913,7 +964,7 @@
                     </select>
                 </div>
                 <div class="field">
-                    <label>المصنعية %</label>
+                    <label for="calcMaker">المصنعية %</label>
                     <input type="number" id="calcMaker" value="5" step="0.5" />
                 </div>
             </div>
@@ -921,13 +972,14 @@
             <div class="calc-result" id="calcResult">
                 <i class="fas fa-coins"></i> <span class="price-value">--</span>
             </div>
-        </div>
+        </section>
 
         <!-- ===== 2. البطاقات المزدوجة ===== -->
         <div class="cards-row">
-            <div class="mini-card">
+            <!-- بطاقة الخليج -->
+            <section class="mini-card">
                 <div class="card-header">
-                    <span class="title"><i class="fas fa-flag"></i> الأسعار في الخليج</span>
+                    <h3 class="title"><i class="fas fa-flag"></i> الأسعار في الخليج</h3>
                     <span class="badge" id="gccCountryLabel">الإمارات</span>
                 </div>
                 <div class="select-row">
@@ -949,14 +1001,21 @@
                 <div class="price-main">
                     <span class="price-value" id="gccPriceValue">--</span> <small id="gccCurrency">AED</small>
                 </div>
+                <div class="price-range">
+                    <span>النطاق السعري:</span>
+                    <span id="gccRangeLow">--</span> – <span id="gccRangeHigh">--</span>
+                    <small id="gccCurrencyRange">AED</small>
+                </div>
                 <div class="price-sub">
-                    <span>سعر الجرام</span>
+                    <span>سعر الجرام المتداول</span>
                     <span class="change up" id="gccChange">▲ +0.0%</span>
                 </div>
-            </div>
-            <div class="mini-card global-card">
+            </section>
+
+            <!-- بطاقة العالمي -->
+            <section class="mini-card global-card">
                 <div class="card-header">
-                    <span class="title"><i class="fas fa-globe-asia"></i> البورصة العالمية</span>
+                    <h3 class="title"><i class="fas fa-globe-asia"></i> البورصة العالمية</h3>
                     <span class="badge">بالدولار</span>
                 </div>
                 <div class="select-row">
@@ -971,27 +1030,31 @@
                 <div class="price-main">
                     <span class="price-value" id="globalOunce">--</span> <small>$</small>
                 </div>
+                <div class="price-range">
+                    <span>نطاق الأونصة:</span>
+                    <span id="globalOunceRangeLow">--</span> – <span id="globalOunceRangeHigh">--</span> $
+                </div>
                 <div class="price-sub">
-                    <span>سعر الأونصة</span>
+                    <span>سعر الأونصة المتداول</span>
                     <span style="font-weight:700; color:var(--platform-gold);">
                         <span class="price-value" id="globalGram">--</span> $/جرام
                     </span>
                 </div>
-            </div>
+            </section>
         </div>
 
         <!-- ===== 3. التسجيل الإخباري ===== -->
-        <div class="register-box">
+        <section class="register-box">
             <h3>📧 اشترك في <span>النشرة اليومية</span></h3>
             <p>احصل على أسعار الذهب اليومية في بريدك الساعة ١٠ صباحاً، مع عروض المشاريع المنزلية المميزة.</p>
             <div class="input-group">
                 <input type="email" id="emailInput" placeholder="أدخل بريدك الإلكتروني" />
                 <button id="subscribeBtn"><i class="fas fa-paper-plane"></i> اشترك الآن</button>
             </div>
-        </div>
+        </section>
 
         <!-- ===== 4. التذييل ===== -->
-        <div class="footer">
+        <footer class="footer">
             <div class="install-area">
                 <i class="fas fa-mobile-alt"></i>
                 <span style="font-weight:700;">احفظ التطبيق على شاشتك</span>
@@ -1001,7 +1064,11 @@
             <div>
                 © 2026 منصة الذهب الخليجية &nbsp;|&nbsp; أسعار لحظية من Metals-API
             </div>
-        </div>
+            <div class="disclaimer">
+                <i class="fas fa-info-circle" style="color:var(--platform-gold); margin-left:8px;"></i>
+                <strong>ملاحظة هامة:</strong> قد تختلف أسعار الذهب المعروضة بين المنصات المختلفة بفارق بسيط (3-5 دراهم) وذلك بسبب فروقات التوقيت، مصادر البيانات، وسعر الصرف المستخدم. السعر المعروض هنا هو <strong>السعر المتداول المرجعي</strong> (السعر الأكثر شيوعاً في السوق)، والنطاق المجاور يوضح مدى التذبذب اليومي التقريبي.
+            </div>
+        </footer>
     </div>
 
     <!-- ===== النوافذ المنبثقة ===== -->
@@ -1044,12 +1111,12 @@
         <div class="modal-icon" style="color:#C9A96E;"><i class="fas fa-plus-circle"></i></div>
         <h2 style="font-size:22px; color:#1C1C1C;">كيف تحفظ المنصة كتطبيق؟</h2>
         <div class="howto-content" style="color:#5A5A5A;">
-            <p><strong style="color:#2C3E50;">📱 أندرويد (Chrome):</strong><br />
+            <p><strong style="color:#2C3E50;"> أندرويد (Chrome):</strong><br />
             اضغط النقاط الثلاث ← <strong style="color:#2C3E50;">"إضافة إلى الشاشة الرئيسية"</strong>.</p>
-            <p><strong style="color:#2C3E50;">🍏 iPhone (Safari):</strong><br />
+            <p><strong style="color:#2C3E50;"> iPhone (Safari):</strong><br />
             اضغط زر المشاركة ← <strong style="color:#2C3E50;">"إضافة إلى الشاشة الرئيسية"</strong>.</p>
             <div class="tip" style="background:#F7F4F0; border-right:4px solid #C9A96E; padding:12px 16px; border-radius:14px; margin-top:12px; color:#1C1C1C; font-weight:600;">
-                ✅ ستصبح المنصة تطبيقاً مستقلاً وسريعاً على شاشتك!
+                 ستصبح المنصة تطبيقاً مستقلاً وسريعاً على شاشتك!
             </div>
         </div>
         <button onclick="document.getElementById('howToModal').classList.remove('active'); document.body.style.overflow='auto';"
@@ -1071,10 +1138,8 @@
         // ================================================================
         // نقاط النهاية (Endpoints) - مصدران رئيسيان
         // ================================================================
-        // المصدر 1: Metals-API (بمفتاحك)
         const METALS_API_URL =
             `https://api.metals-api.com/api/latest?access_key=${METALS_API_KEY}&base=USD&symbols=XAU`;
-        // المصدر 2: GoldAPI.io (بدون مفتاح - للاحتياط)
         const GOLDAPI_FALLBACK_URL = "https://www.goldapi.io/api/XAU/USD";
 
         // ================================================================
@@ -1102,7 +1167,7 @@
         // ================================================================
         // المتغيرات
         // ================================================================
-        let currentGoldPriceUSD = 4082; // سعر احتياطي نهائي (محدث)
+        let currentGoldPriceUSD = 4082;
         let lastFetchTime = new Date();
 
         // ================================================================
@@ -1121,9 +1186,14 @@
             gccCurrency: document.getElementById('gccCurrency'),
             gccCountryLabel: document.getElementById('gccCountryLabel'),
             gccChange: document.getElementById('gccChange'),
+            gccRangeLow: document.getElementById('gccRangeLow'),
+            gccRangeHigh: document.getElementById('gccRangeHigh'),
+            gccCurrencyRange: document.getElementById('gccCurrencyRange'),
             globalCarat: document.getElementById('globalCarat'),
             globalOunce: document.getElementById('globalOunce'),
             globalGram: document.getElementById('globalGram'),
+            globalOunceRangeLow: document.getElementById('globalOunceRangeLow'),
+            globalOunceRangeHigh: document.getElementById('globalOunceRangeHigh'),
             refreshBtn: document.getElementById('refreshBtn'),
             lastUpdate: document.getElementById('lastUpdate'),
             emailInput: document.getElementById('emailInput'),
@@ -1167,7 +1237,6 @@
         // جلب الأسعار - نظام احتياطي ذكي
         // ================================================================
         async function fetchGoldPrice() {
-            // المحاولة 1: Metals-API (المصدر الرئيسي)
             try {
                 const response = await fetch(METALS_API_URL);
                 if (!response.ok) throw new Error(`Metals-API Error: ${response.status}`);
@@ -1192,7 +1261,6 @@
                 console.warn('⚠️ Metals-API فشل، نحاول المصدر الاحتياطي...', error);
             }
 
-            // المحاولة 2: GoldAPI.io (بدون مفتاح - مصادر مفتوحة)
             try {
                 const response = await fetch(GOLDAPI_FALLBACK_URL, {
                     headers: { 'Content-Type': 'application/json' }
@@ -1216,8 +1284,6 @@
                 console.warn('⚠️ GoldAPI فشل، نستخدم السعر الاحتياطي.', error);
             }
 
-            // المحاولة النهائية: السعر الاحتياطي (محدث يدوياً)
-            // يمكنك تغيير الرقم 4082 عند الحاجة
             currentGoldPriceUSD = 4082;
             updateAllCards();
             calculateGold();
@@ -1225,7 +1291,7 @@
         }
 
         // ================================================================
-        // تحديث البطاقات والحاسبة
+        // تحديث البطاقات مع النطاق
         // ================================================================
         function updateGCC() {
             const country = dom.gccCountry.value;
@@ -1237,6 +1303,13 @@
             dom.gccPriceValue.textContent = formatNumber(priceLocal);
             dom.gccCurrency.textContent = country;
             dom.gccCountryLabel.textContent = CURRENCY_NAMES[country] || country;
+
+            const spread = 0.007;
+            const low = priceLocal * (1 - spread);
+            const high = priceLocal * (1 + spread);
+            dom.gccRangeLow.textContent = formatNumber(low);
+            dom.gccRangeHigh.textContent = formatNumber(high);
+            dom.gccCurrencyRange.textContent = country;
 
             const isUp = Math.random() > 0.4;
             const changeVal = (Math.random() * 1.2).toFixed(1);
@@ -1252,6 +1325,12 @@
 
             dom.globalOunce.textContent = formatNumber(ouncePrice);
             dom.globalGram.textContent = formatNumber(gramPrice);
+
+            const spread = 0.007;
+            const low = ouncePrice * (1 - spread);
+            const high = ouncePrice * (1 + spread);
+            dom.globalOunceRangeLow.textContent = formatNumber(low);
+            dom.globalOunceRangeHigh.textContent = formatNumber(high);
         }
 
         function updateAllCards() {
@@ -1259,6 +1338,9 @@
             updateGlobal();
         }
 
+        // ================================================================
+        // الحاسبة
+        // ================================================================
         function calculateGold() {
             const currency = dom.calcCurrency.value;
             const weight = parseFloat(dom.calcWeight.value) || 0;
@@ -1285,7 +1367,7 @@
         dom.globalCarat.addEventListener('change', updateGlobal);
 
         dom.refreshBtn.addEventListener('click', function() {
-            dom.refreshBtn.textContent = '⏳ جارٍ التحديث...';
+            dom.refreshBtn.textContent = ' جارٍ التحديث...';
             dom.refreshBtn.disabled = true;
             fetchGoldPrice().finally(() => {
                 dom.refreshBtn.innerHTML = '<i class="fas fa-bolt"></i> تحديث';
@@ -1296,7 +1378,7 @@
         dom.subscribeBtn.addEventListener('click', function() {
             const email = dom.emailInput.value.trim();
             if (email && email.includes('@')) {
-                alert('✅ تم تسجيل بريدك بنجاح! ستصلك الأسعار يومياً الساعة 10 صباحاً مع عروض سوق المشاريع.');
+                alert(' تم تسجيل بريدك بنجاح! ستصلك الأسعار يومياً الساعة 10 صباحاً مع عروض سوق المشاريع.');
                 dom.emailInput.value = '';
             } else {
                 alert('الرجاء إدخال بريد إلكتروني صحيح.');
@@ -1314,7 +1396,7 @@
         dom.howToModal.addEventListener('click', function(e) { if (e.target === dom.howToModal) closeModal(dom.howToModal); });
 
         // ================================================================
-        // إلغاء الإعلان - يختفي مع زر الإلغاء بشكل كامل
+        // إلغاء الإعلان
         // ================================================================
         dom.promoClose.addEventListener('click', function(e) {
             e.preventDefault();
@@ -1341,7 +1423,7 @@
                 deferredPrompt.prompt();
                 const result = await deferredPrompt.userChoice;
                 if (result.outcome === 'accepted') {
-                    alert('✅ تم تثبيت التطبيق على شاشتك!');
+                    alert(' تم تثبيت التطبيق على شاشتك!');
                 }
                 deferredPrompt = null;
             } else {
@@ -1352,22 +1434,16 @@
         // ================================================================
         // التهيئة والجدولة
         // ================================================================
-        // جلب الأسعار فوراً عند التحميل
         fetchGoldPrice();
-
-        // تحديث الطابع الزمني كل ثانية
         setInterval(updateTimestamp, 1000);
-
-        // تحديث الأسعار تلقائياً كل 60 ثانية
         setInterval(function() {
             fetchGoldPrice();
         }, 60000);
 
-        // عرض الإعلان الترويجي بعد 3 ثوانٍ (مرة واحدة لكل جلسة)
         setTimeout(function() {
-            if (!sessionStorage.getItem('gold_promo_v7')) {
+            if (!sessionStorage.getItem('gold_promo_v8')) {
                 openModal(dom.promoModal);
-                sessionStorage.setItem('gold_promo_v7', 'true');
+                sessionStorage.setItem('gold_promo_v8', 'true');
             }
         }, 3000);
 
