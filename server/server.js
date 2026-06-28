@@ -7,14 +7,15 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // ============================================================
-// 1. إعدادات API (ضع مفتاحك هنا)
+// 🔑 ضع مفتاح API الجديد هنا (استبدل API_KEY_HERE)
 // ============================================================
-const METALS_API_KEY = "AVBQopOokaYlq3OUGPztnJcPXU66AbtsyS1Q4Goq";
-const METALS_API_URL = `https://api.metals-api.com/api/latest?access_key=${METALS_API_KEY}&base=USD&symbols=XAU`;
-const FALLBACK_PRICE = 4082; // سعر احتياطي في حال تعذر الاتصال
+const METALS_API_KEY = "API_KEY_HERE"; // <--- غيّر هذا إلى مفتاحك الجديد
+const METALS_API_URL = `https://metals-api.com/api/latest?access_key=${METALS_API_KEY}&base=USD`;
+
+const FALLBACK_PRICE = 4082;
 
 // ============================================================
-// 2. متغيرات التخزين المؤقت (الأسعار المخزنة في ذاكرة الخادم)
+// تخزين السعر في الذاكرة
 // ============================================================
 let cachedPrice = {
     usd: FALLBACK_PRICE,
@@ -23,18 +24,28 @@ let cachedPrice = {
 };
 
 // ============================================================
-// 3. دالة جلب السعر من API
+// دالة جلب السعر
 // ============================================================
 async function fetchAndStorePrice() {
     try {
         console.log('⏳ جاري تحديث السعر من Metals-API...');
+        console.log(`🔗 الرابط: ${METALS_API_URL}`);
+        
         const response = await fetch(METALS_API_URL);
         
         if (!response.ok) {
-            throw new Error(`HTTP Error: ${response.status}`);
+            throw new Error(`HTTP Error: ${response.status} - ${response.statusText}`);
         }
         
         const data = await response.json();
+        console.log('📦 البيانات المستلمة:', JSON.stringify(data).substring(0, 200) + '...');
+        
+        // التحقق من وجود خطأ في الرد
+        if (data.error) {
+            throw new Error(`API Error: ${data.error.type} - ${data.error.info}`);
+        }
+        
+        // Metals-API يعيد السعر في rates.XAU
         let price = parseFloat(data.rates?.XAU);
         
         if (!price || price <= 0) {
@@ -55,19 +66,16 @@ async function fetchAndStorePrice() {
         console.log(`✅ تم تحديث السعر: $${price} (${cachedPrice.lastUpdated})`);
     } catch (error) {
         console.error('❌ فشل جلب السعر:', error.message);
-        // لا نغير السعر المخزن، نترك القديم
         cachedPrice.status = 'failed';
         cachedPrice.lastUpdated = new Date().toISOString();
+        cachedPrice.error = error.message;
     }
 }
 
 // ============================================================
-// 4. تشغيل المهمة المجدولة (كل 10 دقائق)
+// جدولة التحديث (كل 10 دقائق)
 // ============================================================
-// جلب السعر فور تشغيل الخادم
 fetchAndStorePrice();
-
-// جدولة تحديث كل 10 دقائق
 cron.schedule('*/10 * * * *', () => {
     fetchAndStorePrice();
 });
@@ -75,12 +83,11 @@ cron.schedule('*/10 * * * *', () => {
 console.log('⏰ تم جدولة تحديث السعر كل 10 دقائق');
 
 // ============================================================
-// 5. تشغيل خادم Express
+// نقاط النهاية (Endpoints)
 // ============================================================
 app.use(cors());
 app.use(express.json());
 
-// نقطة النهاية لجلب السعر (يستخدمها الكود الأمامي)
 app.get('/api/price', (req, res) => {
     res.json({
         success: true,
@@ -88,24 +95,25 @@ app.get('/api/price', (req, res) => {
     });
 });
 
-// نقطة النهاية للتحقق من صحة الخادم
 app.get('/api/health', (req, res) => {
     res.json({
         status: 'online',
         uptime: process.uptime(),
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        lastPrice: cachedPrice
     });
 });
 
-// الصفحة الرئيسية (اختياري)
 app.get('/', (req, res) => {
     res.send(`
         <h1>🚀 خادم أسعار الذهب يعمل بنجاح</h1>
         <p>آخر تحديث: ${cachedPrice.lastUpdated}</p>
         <p>سعر الأونصة: $${cachedPrice.usd}</p>
         <p>الحالة: ${cachedPrice.status}</p>
+        ${cachedPrice.error ? `<p style="color:red;">⚠️ خطأ: ${cachedPrice.error}</p>` : ''}
         <hr />
         <p>استخدم نقطة النهاية <code>/api/price</code> للحصول على البيانات بصيغة JSON.</p>
+        <p>استخدم <code>/api/health</code> للتحقق من صحة الخادم.</p>
     `);
 });
 
