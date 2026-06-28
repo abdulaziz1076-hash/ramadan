@@ -1258,8 +1258,8 @@
 // ================================================================
 async function fetchGoldPrice() {
     try {
-        // غير هذا الرابط إلى رابط الخادم الجديد بعد نشره
-        const SERVER_URL = "https://your-server-name.onrender.com/api/price";
+        // استبدل هذا الرابط برابط الخادم الجديد
+        const SERVER_URL = "https://gold-price-server.onrender.com/api/price";
         const response = await fetch(SERVER_URL);
         
         if (!response.ok) {
