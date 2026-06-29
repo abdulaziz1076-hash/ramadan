@@ -7,31 +7,33 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // ============================================================
-// 🔑 ضع مفتاح API الجديد هنا (استبدل API_KEY_HERE)
+// 🔑 مفتاح GoldAPI.io الجديد
 // ============================================================
-const METALS_API_KEY = "API_KEY_HERE"; // <--- غيّر هذا إلى مفتاحك الجديد
-const METALS_API_URL = `https://metals-api.com/api/latest?access_key=${METALS_API_KEY}&base=USD`;
-
-const FALLBACK_PRICE = 4082;
+const GOLD_API_KEY = "goldapi-2d5254b3e470938e18dce7629c4ca41f-io";
+const GOLD_API_URL = `https://www.goldapi.io/api/XAU/USD`;
 
 // ============================================================
 // تخزين السعر في الذاكرة
 // ============================================================
 let cachedPrice = {
-    usd: FALLBACK_PRICE,
+    usd: 4082,
     lastUpdated: new Date().toISOString(),
     status: 'pending'
 };
 
 // ============================================================
-// دالة جلب السعر
+// دالة جلب السعر من GoldAPI.io
 // ============================================================
 async function fetchAndStorePrice() {
     try {
-        console.log('⏳ جاري تحديث السعر من Metals-API...');
-        console.log(`🔗 الرابط: ${METALS_API_URL}`);
+        console.log('⏳ جاري تحديث السعر من GoldAPI.io...');
         
-        const response = await fetch(METALS_API_URL);
+        const response = await fetch(GOLD_API_URL, {
+            headers: {
+                'x-access-token': GOLD_API_KEY,
+                'Content-Type': 'application/json'
+            }
+        });
         
         if (!response.ok) {
             throw new Error(`HTTP Error: ${response.status} - ${response.statusText}`);
@@ -40,21 +42,11 @@ async function fetchAndStorePrice() {
         const data = await response.json();
         console.log('📦 البيانات المستلمة:', JSON.stringify(data).substring(0, 200) + '...');
         
-        // التحقق من وجود خطأ في الرد
-        if (data.error) {
-            throw new Error(`API Error: ${data.error.type} - ${data.error.info}`);
-        }
-        
-        // Metals-API يعيد السعر في rates.XAU
-        let price = parseFloat(data.rates?.XAU);
+        // GoldAPI.io يعيد السعر في "price"
+        let price = parseFloat(data.price);
         
         if (!price || price <= 0) {
             throw new Error('قيمة السعر غير صالحة');
-        }
-        
-        // إذا كانت القيمة أقل من 1، فهي معكوسة (نأخذ المقلوب)
-        if (price < 1) {
-            price = 1 / price;
         }
         
         cachedPrice = {
@@ -113,7 +105,6 @@ app.get('/', (req, res) => {
         ${cachedPrice.error ? `<p style="color:red;">⚠️ خطأ: ${cachedPrice.error}</p>` : ''}
         <hr />
         <p>استخدم نقطة النهاية <code>/api/price</code> للحصول على البيانات بصيغة JSON.</p>
-        <p>استخدم <code>/api/health</code> للتحقق من صحة الخادم.</p>
     `);
 });
 
